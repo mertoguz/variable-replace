@@ -1,0 +1,22 @@
+name: 'Variable replace'
+description: 'Replace variables in given files'
+
+inputs:
+  someSecret:
+    description: 'secret value to replaced'
+    required: true
+  fileName:
+    description: 'file to replace variables'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Replace tokens
+      uses: cschleiden/replace-tokens@v1.1
+      with:
+        tokenPrefix: '__'
+        tokenSuffix: '__'
+        files: ${{ inputs.fileName }}
+      env:
+        SECRET_VARIABLE: ${{ inputs.someSecret }}
