@@ -9,6 +9,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: print env
+      run: env
+      bash: shell
+
     - name: Replace tokens
       uses: cschleiden/replace-tokens@v1.1
       with:
